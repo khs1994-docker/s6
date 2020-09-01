@@ -1,6 +1,8 @@
 # syntax=docker/dockerfile:experimental
 
-FROM --platform=$TARGETPLATFORM centos
+ARG TAG=8
+
+FROM --platform=$TARGETPLATFORM centos:${TAG}
 
 RUN --mount=type=bind,from=khs1994/s6:2.0.0.1,source=/,target=/tmp/s6 \
     set -x \

@@ -52,9 +52,16 @@ jobs:
           --platform=linux/arm64,linux/arm/v7,linux/amd64 \
           -f tests/Dockerfile.ubuntu \
           tests
-      - name: test centos
+      - name: test centos:7
         run: |
           docker buildx build -t test \
           --platform=linux/arm64,linux/arm/v7,linux/amd64 \
+          -f tests/Dockerfile.centos \
+          --build-arg TAG=7 \
+          tests
+      - name: test centos:8
+        run: |
+          docker buildx build -t test \
+          --platform=linux/arm64,linux/amd64 \
           -f tests/Dockerfile.centos \
           tests
