@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:experimental
+
 FROM --platform=$TARGETPLATFORM alpine
 
 RUN --mount=type=bind,from=khs1994/s6:2.0.0.1,source=/,target=/tmp/s6 \
@@ -5,6 +7,6 @@ RUN --mount=type=bind,from=khs1994/s6:2.0.0.1,source=/,target=/tmp/s6 \
     && tar -zxvf /tmp/s6/s6-overlay.tar.gz -C / \
     && ln -s /init /s6-init
 
-RUN set -x ; uname -a ; s6-svscanctl --help
+RUN set -x ; uname -a ; /bin/s6-ls /
 
 ENTRYPOINT ["/s6-init"]
