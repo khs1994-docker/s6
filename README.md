@@ -9,9 +9,9 @@
 
 FROM --platform=$TARGETPLATFORM alpine
 
-RUN --mount=type=bind,from=khs1994/s6:2.2.0.3,source=/,target=/tmp/s6 \
+RUN --mount=type=bind,from=khs1994/s6:3.1.0.1,source=/,target=/tmp/s6 \
     set -x \
-    && tar -zxvf /tmp/s6/s6-overlay.tar.gz -C / \
+    && tar -zxvf /tmp/s6/s6-overlay.tar.xz -C / \
 # https://github.com/MinchinWeb/docker-base/commit/f5e350dcf3523a424772a1e42a3dba3200d7a2aa
     && ln -s /init /s6-init
 
@@ -32,10 +32,10 @@ lrwxrwxrwx   1 root root    7 Jul 29 01:29 bin -> usr/bin
 
 FROM --platform=$TARGETPLATFORM ubuntu
 
-RUN --mount=type=bind,from=khs1994/s6:2.2.0.3,source=/,target=/tmp/s6 \
+RUN --mount=type=bind,from=khs1994/s6:3.1.0.1,source=/,target=/tmp/s6 \
     set -x \
-    && tar -zxvf /tmp/s6/s6-overlay.tar.gz -C / --exclude='./bin' \
-    && tar -zxvf /tmp/s6/s6-overlay.tar.gz -C /usr ./bin \
+    && tar -zxvf /tmp/s6/s6-overlay.tar.xz -C / --exclude='./bin' \
+    && tar -zxvf /tmp/s6/s6-overlay.tar.xz -C /usr ./bin \
 # https://github.com/MinchinWeb/docker-base/commit/f5e350dcf3523a424772a1e42a3dba3200d7a2aa
     && ln -s /init /s6-init
 
