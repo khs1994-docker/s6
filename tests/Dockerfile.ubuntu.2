@@ -8,6 +8,6 @@ RUN --mount=type=bind,from=khs1994/s6:2.2.0.3,source=/,target=/tmp/s6 \
     && tar -zxvf /tmp/s6/s6-overlay.tar.gz -C /usr ./bin \
     && ln -s /init /s6-init
 
-RUN set -x ; uname -a ; /command/s6-ls /
+RUN set -x ; uname -a ; /bin/s6-ls /
 
 ENTRYPOINT ["/s6-init"]
